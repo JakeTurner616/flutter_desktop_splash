@@ -3,6 +3,8 @@
 
 `flutter_desktop_splash` is a customizable splash screen widget for Flutter desktop applications, allowing you to configure logos, background colors, animations, and optional loading text.
 
+![](docs/flutter_desktop_splash.gif?raw=true)
+
 ## Reasoning
 Easily manage the launch screen of apps the target windows, macos, and linux as splash screen support must be done at the application level after flutter init: [https://github.com/flutter/flutter/issues/41980](https://github.com/flutter/flutter/issues/41980)
 
