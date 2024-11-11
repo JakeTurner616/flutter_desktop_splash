@@ -8,6 +8,24 @@
 ## Reasoning
 Easily manage the launch screen of apps the target windows, macos, and linux as splash screen support must be done at the application level after flutter init: [https://github.com/flutter/flutter/issues/41980](https://github.com/flutter/flutter/issues/41980)
 
+## Installing
+
+To install `flutter_desktop_splash`, add it to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  flutter_desktop_splash:
+    git:
+      url: https://github.com/JakeTurner616/flutter_desktop_splash.git
+      ref: main
+```
+
+Then update dependencies:
+
+```bash
+flutter pub get
+```
+
 ## Usage
 
 ```dart
@@ -49,7 +67,6 @@ DesktopSplashScreen(
 - **`loadingText`**: Optional message shown below the loading indicator.
 
 
-
 ## Platform-Specific Check
 
 By default this package will work on all platforms. Simply add a platform conditional to target desktop platforms (Windows, macOS, and Linux) for the `DesktopSplashScreen` Widget to keep mobile splash screens independent:
@@ -87,8 +104,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 ```
 
 ## License
