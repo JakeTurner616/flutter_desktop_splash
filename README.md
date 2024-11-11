@@ -1,39 +1,49 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+# flutter_desktop_splash
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+`flutter_desktop_splash` is a customizable splash screen widget for Flutter desktop applications, allowing you to configure logos, background colors, animations, and optional loading text.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Reasoning
+Easily manage the launch screen of apps the target windows, macos, and linux as splash screen support must be done at the application level after flutter init: [https://github.com/flutter/flutter/issues/41980](https://github.com/flutter/flutter/issues/41980)
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+DesktopSplashScreen(
+  logo: Image.asset(
+    'assets/logo.png',
+    width: 250,       // Width of the logo
+    height: 250,      // Height of the logo
+  ),
+  backgroundColor: Colors.deepPurple, // Splash screen background color
+  duration: Duration(seconds: 5),     // Duration to display the splash screen
+  
+  // Callback after splash duration completes
+  onInitializationComplete: () {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => HomePage()),
+    );
+  },
+
+  // Custom loading animation
+  loadingIndicator: LoadingIndicator(
+    indicatorType: Indicator.ballPulse,
+    colors: [Colors.orange, Colors.yellow, Colors.red],
+    strokeWidth: 2,
+  ),
+  
+  // Optional loading text below the animation
+  loadingText: 'Preparing your experience...',
+)
 ```
 
-## Additional information
+### Parameters
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- **`logo`**: Custom logo widget to display in the center.
+- **`backgroundColor`**: Background color for the splash screen.
+- **`duration`**: Duration the splash screen is shown.
+- **`onInitializationComplete`**: Callback to transition to the main app.
+- **`loadingIndicator`**: Customizable loading animation from `loading_indicator`.
+- **`loadingText`**: Optional message shown below the loading indicator.
+
+## 
