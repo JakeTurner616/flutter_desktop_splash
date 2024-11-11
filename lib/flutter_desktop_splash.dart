@@ -1,5 +1,3 @@
-// lib/flutter_desktop_splash.dart
-
 library flutter_desktop_splash;
 
 import 'package:flutter/material.dart';
@@ -19,7 +17,7 @@ class DesktopSplashScreen extends StatefulWidget {
     this.duration = const Duration(seconds: 3),
     required this.onInitializationComplete,
     this.loadingIndicator,
-    this.loadingText, // Initialize the optional text
+    this.loadingText,
   }) : super(key: key);
 
   @override
@@ -52,9 +50,14 @@ class _DesktopSplashScreenState extends State<DesktopSplashScreen>
   Future<void> _startSplash() async {
     // Display splash screen elements for the specified duration
     await Future.delayed(widget.duration);
+
     // Start the fade-out animation
-    _controller.forward().then((_) {
-      widget.onInitializationComplete(); // Complete the initialization
+    await _controller.forward();
+
+    // Use addPostFrameCallback to ensure a valid Navigator context
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget
+          .onInitializationComplete(); // Complete the initialization after the frame
     });
   }
 
